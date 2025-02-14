@@ -1,0 +1,13 @@
+.menu-clipper {
+    max-height: 0;
+    clip-path: inset(0 0 100% 0);
+    overflow: hidden;
+    transition: max-height 0.2s ease-out, clip-path 0.1s ease-out;
+}
+
+.menu-clipper.open {
+    max-height: 300px;
+    /* Adjust based on content */
+    clip-path: inset(0 0 0 0);
+    /* Fully visible */
+}
