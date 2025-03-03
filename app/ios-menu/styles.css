@@ -1,13 +1,134 @@
-.menu-clipper {
-    max-height: 0;
-    clip-path: inset(0 0 100% 0);
-    overflow: hidden;
-    transition: max-height 0.2s ease-out, clip-path 0.1s ease-out;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.menu-clipper.open {
-    max-height: 300px;
-    /* Adjust based on content */
+.ios-menu_root {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 12px;
+    width: 220px;
+
+/* ✅ Custom Transition Variables */
+    --transition-out: 320ms var(--ease-in-out-quad);
+    --transition-in: 320ms var(--ease-out-quad);
+    --transition: var(--transition-out);
+
+    /* ✅ Apply Transitions */
+    transition: transform var(--transition);
+    transition-behavior: normal;
+    transition-delay: 0s;
+    transition-duration: 0.32s;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.ios-menu_root:has(.ios-menu_dropdown[data-state="open"])>.ios-menu_item {
+    transform: scale(0.96);
+    opacity: 0.6;
+    transition: opacity 0.3s ease-out;
+}
+
+.ios-menu_item {
+    display: flex;
+    width: 220px;
+    align-items: center;
+    padding: 12px;
+    color: white;
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #3f3f46;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+}
+
+
+.ios-menu_icon {
+    margin-right: 8px;
+}
+
+.ios-menu_label {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.ios-menu_indicator {
+    transition: transform 0.3s ease-out;
+    width: 24px;
+    height: 24px;
+}
+
+
+.ios-menu_dropdownWrapper.open {
+    position: relative;
+    z-index: 1;
+    transform: scale(calc(1 / 0.96));
+    background: #27272a;
+    transition: transform 0.5s ease-out;
+    border-radius: 12px;
+}
+
+
+.ios-menu_dropdownContent {
+    position: absolute;
+    width: 220px;
+    background: #27272a;
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    transition: clip-path 0.2s ease-out, transform 0.3s ease-out, opacity 0.3s ease-out;
+    height: 0px;
+    animation: fadeInUp 0.3s ease-out forwards;
+
+}
+
+.ios-menu_dropdownContent.open {
     clip-path: inset(0 0 0 0);
-    /* Fully visible */
+    opacity: 1;
+    height: auto;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.ios-menu_dropdownContent .ios-menu_item:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.ios-menu_dropdownContent .ios-menu_item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.ios-menu_dropdownContent .ios-menu_item:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+/* ✅ Ensure border-radius only applies to the first & last items in `.ios-menu-root` */
+.ios-menu_root>.ios-menu_item:first-child {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.ios-menu_root>.ios-menu_item:last-child {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+
+/* ✅ Apply border-radius to the last submenu item ONLY WHEN the dropdown is open */
+.ios-menu_dropdownContent.open .ios-menu_item:last-child {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.ios-menu_dropdownWrapper.open .ios-menu_item {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }

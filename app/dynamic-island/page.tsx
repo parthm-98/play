@@ -5,7 +5,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Ring } from "./ring";
 import { Timer } from "./timer";
 
-// Define a strict type for allowed keys
+interface TransitionProps {
+  scale?: number;
+  scaleX?: number;
+  y?: number;
+  bounce?: number;
+  opacity?: number[];
+  filter?: string;
+}
+
 type VariantKey =
   | "idle"
   | "ring-idle"
@@ -31,8 +39,8 @@ export default function DynamicIsland() {
   }, [view]);
 
   return (
-    <div className="h-[200px]">
-      <div className="relative flex h-full w-full flex-col justify-between">
+    <div className="flex h-dvh justify-center items-center">
+      <div className="relative flex h-[200px] w-full flex-col justify-between">
         <motion.div
           layout
           transition={{
@@ -106,7 +114,7 @@ export default function DynamicIsland() {
 
 // Define animation variants and bounce variants with strict typing
 const variants = {
-  exit: (transition: any) => {
+  exit: (transition: TransitionProps) => {
     return {
       ...transition,
       opacity: [1, 0],
@@ -115,7 +123,7 @@ const variants = {
   },
 };
 
-const ANIMATION_VARIANTS: Record<VariantKey, any> = {
+const ANIMATION_VARIANTS: Record<VariantKey, TransitionProps> = {
   idle: { scale: 1 },
   "ring-idle": {
     scale: 0.9,
