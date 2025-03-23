@@ -1,0 +1,18 @@
+.wrapper {
+    display: grid;
+}
+
+.card {
+    width: 365px;
+    height: 74px;
+    box-shadow: 0 4px 12px #0000001a;
+    border: 1px solid #eeeeee;
+    background: white;
+    border-radius: 8px;
+    grid-area: 1/1;
+    --scale-increment: 0.05;
+        --translate-increment: -15%;
+        transform: scale(calc(1 - var(--index) * var(--scale-increment))) translateY(calc(var(--index) * var(--translate-increment)));
+
+}
+
