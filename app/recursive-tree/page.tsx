@@ -2,7 +2,7 @@
 
 import { DocumentIcon, FolderIcon } from "@heroicons/react/24/solid";
 
-import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -11,7 +11,7 @@ type Node = {
   nodes?: Node[];
 };
 
-let trunk: Node[] = [
+const trunk: Node[] = [
   {
     name: "Home",
     nodes: [
@@ -61,7 +61,7 @@ export default function RecurssiveFolder() {
 }
 
 function Folder({ nodeStructure: { nodes, name } }: { nodeStructure: Node }) {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <li className="my-1.5" key={name}>
       <span className="flex items-center gap-1.5">
