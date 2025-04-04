@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@phosphor-icons/react": "^2.1.7",
     "@radix-ui/react-radio-group": "^1.2.2",
     "@radix-ui/react-switch": "^1.1.2",
