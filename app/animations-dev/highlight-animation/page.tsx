@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { MotionConfig, motion } from "motion/react";
+import { motion } from "motion/react";
 
 const TABS = ["Saved Sites", "Collections", "48 following", "32 Followers"];
 
