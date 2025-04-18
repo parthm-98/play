@@ -6,7 +6,7 @@ type PanelProps = {
   title: string;
   bgColor?: string;
   textColor?: string;
-  height?: string;
+  height?: string; // no default
   className?: string;
   children?: React.ReactNode;
 };
@@ -15,13 +15,14 @@ export function Panel({
   title,
   bgColor = "bg-gray-100",
   textColor = "text-black",
-  height = "h-dvh",
+  height,
   className,
   children,
 }: PanelProps) {
   const [ref, bounds] = useMeasure();
+
   return (
-    <div
+    <section
       className={clsx(
         "flex items-center justify-center text-center rounded p-4",
         bgColor,
@@ -32,10 +33,11 @@ export function Panel({
       ref={ref}
     >
       {children ?? (
-        <span className="font-semibold">
-          {title} {bounds.width}
-        </span>
+        <div className="text-center font-semibold">
+          <h2>{title}</h2>
+          <div className="font-serif font-extralight">({bounds.width})</div>
+        </div>
       )}
-    </div>
+    </section>
   );
 }
