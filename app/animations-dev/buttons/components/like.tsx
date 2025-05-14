@@ -2,7 +2,6 @@
 
 import { useAnimate, AnimationOptions } from "motion/react";
 import { HeartIcon } from "@heroicons/react/24/solid";
-import { useRef } from "react";
 
 export default function HeartButton() {
   const [scope, animate] = useAnimate();
