@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Ring } from "./ring";
 import { RingV2 } from "./ringv2";
 

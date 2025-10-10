@@ -19,8 +19,6 @@ export function RingV2() {
     0,
   ];
 
-  const rotationKeyframes = [0, 20, -15, 12.5, -10, 10, -7.5, 7.5, -5, 5, 0];
-
   useEffect(() => {
     const id = setTimeout(
       () => {
